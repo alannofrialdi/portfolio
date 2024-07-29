@@ -162,7 +162,7 @@ const config = {
       },
       backgroundImage: {
         "gradient-light-mode": "linear-gradient(to right, #4A00E0, #8E2DE2)",
-        "gradient-dark-mode": "linear-gradient(to right, #314755, #26a0da)",
+        "gradient-dark-mode": "linear-gradient(to right, #2193b0, #6dd5ed)",
       },
     },
   },

@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Inter, Poppins } from "next/font/google";
+import { useLocale } from "next-intl";
+
+// const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Alan's Portfolio",
@@ -14,9 +22,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = useLocale();
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang={locale}>
+      <body className={poppins.className}>{children}</body>
     </html>
   );
 }

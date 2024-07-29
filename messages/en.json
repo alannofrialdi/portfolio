@@ -1,6 +1,7 @@
 {
   "HeroSection": {
     "hello": "Hi, my name is Alan.",
-    "webDev": "I'am a Web Developer."
+    "webDev": "I'am a Web Developer.",
+    "downloadResume": "Download Resume"
   }
 }

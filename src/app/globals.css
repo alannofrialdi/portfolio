@@ -78,6 +78,14 @@
   }
 }
 
+html {
+  font-family: var(--font-inter);
+}
+
+h1 {
+  font-family: var(--font-poppins);
+}
+
 @layer utilities {
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
