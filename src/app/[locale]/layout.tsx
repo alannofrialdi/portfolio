@@ -1,23 +1,28 @@
 import { NextIntlClientProvider } from "next-intl";
+import "../globals.css";
 import { getMessages } from "next-intl/server";
 import { Inter, Poppins } from "next/font/google";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
 });
-const locales = ["en", "de"];
+
 export const metadata: Metadata = {
   title: "Alan's Portfolio",
   description: "Alan's Portfolio Site",
 };
+
+const locales = ["en", "id"];
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return [{ locale: "en" }, { locale: "id" }];
 }
 
 export default async function LocaleLayout({
@@ -27,8 +32,9 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  if (!locales.includes(locale)) notFound();
 
+  unstable_setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
