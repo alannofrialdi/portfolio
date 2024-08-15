@@ -1,13 +1,11 @@
 import type { Config } from "tailwindcss";
-
 const svgToDataUri = require("mini-svg-data-uri");
-
 const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -16,7 +14,6 @@ const config = {
     "./src/**/*.{ts,tsx}",
     "./data/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -39,7 +36,7 @@ const config = {
           200: "#C1C2D3",
         },
         blue: {
-          "100": "#E4ECFF",
+          100: "#E4ECFF",
         },
         purple: "#CBACF9",
         border: "hsl(var(--border))",
@@ -163,31 +160,50 @@ const config = {
       backgroundImage: {
         "gradient-light-mode": "linear-gradient(to right, #4A00E0, #8E2DE2)",
         "gradient-dark-mode": "linear-gradient(to right, #2193b0, #6dd5ed)",
+        "gradient-zinc":
+          "linear-gradient(to bottom, #ADA996, #F2F2F2, #DBDBDB,#EAEAEA)",
       },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
     addVariablesForColors,
+    function ({ addUtilities, theme }: any) {
+      addUtilities(
+        {
+          ".text-gradient-light-mode": {
+            "background-image": theme("backgroundImage.gradient-light-mode"),
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent",
+          },
+          ".text-gradient-dark-mode": {
+            "background-image": theme("backgroundImage.gradient-dark-mode"),
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent",
+          },
+        },
+        ["responsive", "hover"],
+      );
+    },
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {
-          "bg-dot-thick": (value: any) => ({
+          "bg-dot-thick": (value: string) => ({
             backgroundImage: `url("${svgToDataUri(
               `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="2.5"></circle></svg>`,
             )}")`,
           }),
-          "bg-grid": (value: any) => ({
+          "bg-grid": (value: string) => ({
             backgroundImage: `url("${svgToDataUri(
               `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100" height="100" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`,
             )}")`,
           }),
-          "bg-grid-small": (value: any) => ({
+          "bg-grid-small": (value: string) => ({
             backgroundImage: `url("${svgToDataUri(
               `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="8" height="8" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`,
             )}")`,
           }),
-          "bg-dot": (value: any) => ({
+          "bg-dot": (value: string) => ({
             backgroundImage: `url("${svgToDataUri(
               `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="1.6257413380501518"></circle></svg>`,
             )}")`,
@@ -200,7 +216,7 @@ const config = {
       );
     },
   ],
-} satisfies Config;
+};
 
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));

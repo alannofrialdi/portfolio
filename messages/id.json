@@ -2,6 +2,7 @@
   "HeroSection": {
     "hello": "Hi, Nama saya Alan.",
     "webDev": "Saya adalah seorang Pengembang Web.",
-    "downloadResume": "Unduh Resume"
+    "downloadResume": "Unduh Resume",
+    "myProjects": "Projek Saya"
   }
 }

@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { useLocale } from "next-intl";
-
-// const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "700", "900"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {

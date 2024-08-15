@@ -34,7 +34,7 @@ export function DropdownLang() {
       <DropdownMenuTrigger asChild disabled={isPending}>
         <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
           <span>{position}</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
+          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent dark:via-[#2193b0] via-[#4A00E0]  to-transparent h-px" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-20 mt-4 z-50">
